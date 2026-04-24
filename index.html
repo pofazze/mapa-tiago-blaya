@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Tiago Blaya — Mentoria CPP</title>
+<meta name="description" content="Mapa de transformação Dr. Tiago Blaya · Cirurgião Particular Premium · Mentoria CPP com Patrick Suyti e Dr. Matheus Jeronimo.">
+<meta name="theme-color" content="#D4A53C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mapa CPP">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dr. Tiago Blaya — Mentoria CPP">
+<meta property="og:description" content="Mapa de transformação · Cirurgião Particular Premium">
+<meta property="og:image" content="https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-mockup.png">
+<meta property="og:url" content="https://pofazze.github.io/mapa-tiago-blaya/">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-mockup.png">
+
+<!-- Favicon + PWA -->
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-logo.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-logo.png">
+<link rel="manifest" href="manifest.json">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-0: #0A0908;
+  --bg-1: #0F0D0B;
+  --bg-2: #1A1410;
+  --bg-3: #221813;
+  --gold: #D4A53C;
+  --gold-2: #E8C870;
+  --gold-3: #F5E0A0;
+  --gold-dark: #8B6B1F;
+  --gold-bg: rgba(212,165,60,0.08);
+  --gold-border: rgba(212,165,60,0.18);
+  --gold-border-strong: rgba(212,165,60,0.35);
+  --white: #E8E4DD;
+  --w90: rgba(232,228,221,0.9);
+  --w70: rgba(232,228,221,0.7);
+  --w50: rgba(232,228,221,0.5);
+  --w30: rgba(232,228,221,0.3);
+  --w15: rgba(232,228,221,0.15);
+  --w08: rgba(232,228,221,0.08);
+  --gray: #9B9690;
+  --green: #4A8B6A;
+  --red: #B85450;
+  --orange: #C4854A;
+  --r-lg: 24px;
+  --r-md: 16px;
+  --r-sm: 10px;
+  --r-xs: 6px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-fast: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:80px; }
+body {
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--bg-0);
+  color:var(--white);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:'cv11','ss01','ss03';
+  position:relative;
+}
+/* ============ MARCA D'AGUA SUTIL DO LOGO ============ */
+body::before {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:url('https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-logo.png') center/min(60vw,500px) no-repeat;
+  opacity:0.018;
+  filter:brightness(2);
+}
+
+/* ============ BARRA DE PROGRESSO TOPO ============ */
+.progress-bar-top {
+  position:fixed; top:0; left:0; right:0;
+  height:3px; background:var(--w08);
+  z-index:200; pointer-events:none;
+}
+.progress-bar-fill {
+  height:100%; width:0%;
+  background:linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-2));
+  transition:width .6s var(--ease);
+  box-shadow:0 0 12px rgba(212,165,60,0.6);
+}
+
+/* ============ SIDE NAV (sticky desktop) ============ */
+.sidenav {
+  position:fixed; right:24px; top:50%; transform:translateY(-50%);
+  z-index:90; display:none;
+  flex-direction:column; gap:14px;
+  padding:18px 14px;
+  background:rgba(15,13,11,0.7);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid var(--w08);
+  border-radius:100px;
+}
+@media(min-width:1100px){.sidenav{display:flex;}}
+.sidenav a {
+  width:10px; height:10px; border-radius:50%;
+  background:var(--w15); transition:all .3s var(--ease);
+  position:relative;
+}
+.sidenav a:hover { background:var(--gold); transform:scale(1.4); }
+.sidenav a.active {
+  background:var(--gold);
+  box-shadow:0 0 12px rgba(212,165,60,0.6);
+}
+.sidenav a::before {
+  content:attr(data-label);
+  position:absolute; right:24px; top:50%;
+  transform:translateY(-50%) translateX(8px);
+  background:var(--bg-2); border:1px solid var(--w15);
+  padding:6px 14px; border-radius:100px;
+  font-size:11px; font-weight:600; color:var(--white);
+  letter-spacing:1px; text-transform:uppercase;
+  white-space:nowrap; opacity:0; pointer-events:none;
+  transition:all .3s var(--ease);
+}
+.sidenav a:hover::before { opacity:1; transform:translateY(-50%) translateX(0); }
+
+/* ============ WHATSAPP FLOAT ============ */
+.wa-float {
+  position:fixed; bottom:24px; right:24px;
+  z-index:90;
+  display:flex; align-items:center; gap:12px;
+  padding:14px 22px 14px 14px;
+  background:linear-gradient(135deg, #25D366, #128C7E);
+  color:#fff; border-radius:100px;
+  box-shadow:0 10px 30px rgba(37,211,102,0.4);
+  font-family:'Inter',sans-serif; font-weight:600; font-size:13px;
+  letter-spacing:0.5px;
+  transition:all .3s var(--ease);
+  cursor:pointer; text-decoration:none;
+}
+.wa-float:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(37,211,102,0.55); }
+.wa-icon {
+  width:40px; height:40px; border-radius:50%;
+  background:rgba(255,255,255,0.18);
+  display:flex; align-items:center; justify-content:center;
+}
+.wa-icon svg { width:22px; height:22px; fill:#fff; }
+.wa-label-mobile { display:none; }
+@media(max-width:540px){
+  .wa-float { padding:12px; gap:0; bottom:18px; right:18px; }
+  .wa-label { display:none; }
+  .wa-icon { width:30px; height:30px; }
+  .wa-icon svg { width:18px; height:18px; }
+}
+
+/* ============ BADGE DE CONQUISTA ============ */
+.badge-conquest {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:4px 10px;
+  background:var(--gold-bg);
+  border:1px solid var(--gold-border);
+  border-radius:100px;
+  font-size:10px; font-weight:600;
+  color:var(--gold-2); letter-spacing:1px; text-transform:uppercase;
+}
+.badge-conquest::before { content:'★'; font-size:11px; color:var(--gold); }
+
+/* ============ MATERIAL EXCLUSIVO ============ */
+.material-section { padding:100px 0; background:var(--bg-1); }
+.material-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:40px;
+}
+@media(max-width:880px){.material-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.material-grid{grid-template-columns:1fr;}}
+.material-card {
+  padding:32px 24px;
+  background:var(--bg-2); border:1px solid var(--w08);
+  border-radius:var(--r-md);
+  display:flex; flex-direction:column; gap:12px;
+  transition:all .3s var(--ease);
+  position:relative; overflow:hidden;
+}
+.material-card.locked { opacity:0.55; }
+.material-card:hover { border-color:var(--gold-border-strong); transform:translateY(-4px); }
+.material-card-icon {
+  width:48px; height:48px; border-radius:var(--r-sm);
+  background:var(--gold-bg); border:1px solid var(--gold-border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; color:var(--gold);
+}
+.material-card-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px; font-weight:600; color:var(--white);
+  line-height:1.2;
+}
+.material-card-desc { font-size:13px; color:var(--w70); line-height:1.6; }
+.material-card-cta {
+  margin-top:auto; padding-top:14px;
+  font-size:11px; text-transform:uppercase; letter-spacing:1.5px;
+  color:var(--gold-2); font-weight:700;
+  display:flex; align-items:center; gap:6px;
+}
+.material-card-cta::after { content:'→'; transition:transform .3s; }
+.material-card:hover .material-card-cta::after { transform:translateX(4px); }
+
+/* ============ PWA INSTALL HINT ============ */
+.install-hint {
+  position:fixed; bottom:90px; left:50%; transform:translateX(-50%);
+  padding:14px 22px;
+  background:var(--bg-2);
+  border:1px solid var(--gold-border-strong);
+  border-radius:100px;
+  font-size:12px; color:var(--white);
+  display:none; align-items:center; gap:10px;
+  z-index:80;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+.install-hint.show { display:flex; }
+.install-hint button {
+  background:var(--gold); color:var(--bg-0);
+  border:none; padding:6px 14px; border-radius:100px;
+  font-size:11px; font-weight:700; cursor:pointer;
+  text-transform:uppercase; letter-spacing:1px;
+}
+.install-hint .close-x {
+  background:transparent; color:var(--w50);
+  font-size:16px; padding:2px 8px;
+}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal { opacity:0; transform:translateY(36px); transition:all .9s var(--ease); }
+.reveal.in { opacity:1; transform:translateY(0); }
+.reveal-stagger > * { opacity:0; transform:translateY(20px); transition:all .7s var(--ease); }
+.reveal-stagger.in > *:nth-child(1) { transition-delay:.05s; opacity:1; transform:none; }
+.reveal-stagger.in > *:nth-child(2) { transition-delay:.15s; opacity:1; transform:none; }
+.reveal-stagger.in > *:nth-child(3) { transition-delay:.25s; opacity:1; transform:none; }
+.reveal-stagger.in > *:nth-child(4) { transition-delay:.35s; opacity:1; transform:none; }
+h1,h2,h3,h4,h5 { font-family:'Cormorant Garamond',serif; letter-spacing:-0.02em; line-height:1.1; }
+img { display:block; max-width:100%; }
+a { color:inherit; text-decoration:none; }
+
+.wrap { max-width:1180px; margin:0 auto; padding:0 32px; position:relative; }
+.wrap-narrow { max-width:880px; margin:0 auto; padding:0 32px; }
+
+.topnav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:14px 32px;
+  background:rgba(10,9,8,0.7);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--w08);
+  transition:background .3s var(--ease);
+}
+.topnav-inner {
+  max-width:1180px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+.topnav-brand {
+  display:flex; align-items:center; gap:12px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px; font-weight:600; letter-spacing:0.5px;
+}
+.topnav-logo {
+  width:32px; height:32px;
+  background:url('https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-logo.png') center/contain no-repeat;
+  filter:brightness(1.1);
+}
+.topnav-mid {
+  display:none;
+  align-items:center; gap:8px; font-size:13px; color:var(--w70);
+}
+@media(min-width:920px){.topnav-mid{display:flex;}}
+.topnav-mid .pipe { color:var(--w15); margin:0 4px; }
+.topnav-mid .doc-name { color:var(--white); font-weight:500; }
+.topnav-status {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; padding:5px 12px; border-radius:100px;
+  background:var(--gold-bg); border:1px solid var(--gold-border);
+  color:var(--gold-2); font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+}
+.topnav-status::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--gold); box-shadow:0 0 10px var(--gold);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+.topnav-cta { display:none; }
+@media(min-width:840px){.topnav-cta{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--w70);}}
+
+.hero {
+  min-height:100vh; display:flex; align-items:center; position:relative;
+  overflow:hidden; padding:120px 0 80px;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212,165,60,0.10), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(196,133,74,0.06), transparent 60%),
+    linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+}
+.hero::before {
+  content:''; position:absolute; inset:0; opacity:0.025;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.hero-inner { max-width:1180px; margin:0 auto; padding:0 32px; position:relative; z-index:2; width:100%; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:10px;
+  padding:8px 18px; background:var(--gold-bg);
+  border:1px solid var(--gold-border); border-radius:100px;
+  font-size:11px; font-weight:600; color:var(--gold-2);
+  letter-spacing:3px; text-transform:uppercase; margin-bottom:36px;
+}
+.hero-badge .logo-mini {
+  width:18px; height:18px;
+  background:url('https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-logo.png') center/contain no-repeat;
+}
+
+.hero-grid {
+  display:grid; grid-template-columns:1.4fr 1fr; gap:64px; align-items:center;
+}
+@media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:48px;}}
+
+.hero-left h1 { font-size:clamp(48px, 7vw, 92px); font-weight:500; margin-bottom:24px; }
+.hero-left h1 .name {
+  display:block;
+  background:linear-gradient(135deg, var(--gold-3) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  font-style:italic;
+}
+.hero-sub {
+  font-family:'Inter',sans-serif; font-size:18px; color:var(--w70);
+  max-width:540px; margin-bottom:36px; line-height:1.7; font-weight:300;
+}
+.hero-meta { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:44px; }
+.hero-meta-pill {
+  padding:7px 14px; background:var(--w08);
+  border:1px solid var(--w15); border-radius:100px;
+  font-size:12px; color:var(--w70);
+}
+.hero-meta-pill strong { color:var(--white); font-weight:600; }
+
+.hero-cta { display:flex; gap:14px; flex-wrap:wrap; }
+.btn {
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 28px; font-family:'Inter',sans-serif;
+  font-size:13px; font-weight:600;
+  border-radius:100px; border:1px solid transparent;
+  cursor:pointer; transition:all .3s var(--ease);
+  text-transform:uppercase; letter-spacing:1.5px;
+}
+.btn-primary {
+  background:linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color:var(--bg-0); border-color:var(--gold);
+}
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(212,165,60,0.3); }
+.btn-ghost { background:transparent; color:var(--white); border-color:var(--w30); }
+.btn-ghost:hover { background:var(--w08); border-color:var(--w50); }
+
+.hero-right { position:relative; }
+.transformation-card {
+  background:linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+  border:1px solid var(--gold-border); border-radius:var(--r-lg);
+  padding:36px; position:relative; overflow:hidden;
+}
+.transformation-card::before {
+  content:''; position:absolute; top:-1px; left:-1px; right:-1px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.tc-label {
+  font-size:10px; text-transform:uppercase; letter-spacing:3px;
+  color:var(--gold-2); font-weight:700; margin-bottom:24px;
+}
+.tc-stage { display:flex; flex-direction:column; gap:6px; margin-bottom:32px; }
+.tc-stage-label {
+  font-size:11px; text-transform:uppercase; letter-spacing:2px;
+  color:var(--w50); font-weight:500;
+}
+.tc-stage-value {
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px; font-weight:600; line-height:1; color:var(--white);
+}
+.tc-stage-value.gold {
+  background:linear-gradient(135deg, var(--gold-3), var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.tc-arrow { display:flex; align-items:center; justify-content:center; margin:8px 0; color:var(--gold); font-size:20px; }
+.tc-meta {
+  padding-top:24px; border-top:1px solid var(--w08);
+  display:flex; justify-content:space-between; font-size:12px;
+}
+.tc-meta-item .lab { color:var(--w50); display:block; margin-bottom:4px; }
+.tc-meta-item .val { color:var(--white); font-weight:600; }
+
+.progress-section {
+  padding:80px 0 60px; background:var(--bg-1);
+  border-top:1px solid var(--w08); border-bottom:1px solid var(--w08);
+}
+.progress-head { text-align:center; margin-bottom:48px; }
+.progress-head .label {
+  font-size:11px; text-transform:uppercase; letter-spacing:3px;
+  color:var(--gold-2); font-weight:600; margin-bottom:14px;
+}
+.progress-head h2 { font-size:clamp(32px,4vw,44px); margin-bottom:0; }
+.timeline {
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:0;
+  position:relative; margin-top:48px;
+}
+@media(max-width:740px){.timeline{grid-template-columns:1fr 1fr;gap:24px;}}
+.timeline::before {
+  content:''; position:absolute; top:24px; left:12%; right:12%; height:1px;
+  background:linear-gradient(90deg, var(--gold) 0%, var(--gold) 25%, var(--w15) 25%, var(--w15) 100%);
+  z-index:0;
+}
+@media(max-width:740px){.timeline::before{display:none;}}
+
+.tl-step { position:relative; z-index:1; text-align:center; padding:0 16px; }
+.tl-dot {
+  width:48px; height:48px; border-radius:50%;
+  background:var(--bg-1); border:2px solid var(--w15);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 16px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px; font-weight:600; color:var(--w50);
+  transition:all .3s var(--ease);
+}
+.tl-step.done .tl-dot {
+  background:linear-gradient(135deg, var(--gold), var(--gold-dark));
+  border-color:var(--gold); color:var(--bg-0);
+  box-shadow:0 0 28px rgba(212,165,60,0.4);
+}
+.tl-step.current .tl-dot {
+  background:var(--bg-1); border-color:var(--gold); color:var(--gold);
+  box-shadow:0 0 28px rgba(212,165,60,0.25);
+  animation:pulseRing 2s infinite;
+}
+@keyframes pulseRing {
+  0%,100%{box-shadow:0 0 28px rgba(212,165,60,0.25);}
+  50%{box-shadow:0 0 40px rgba(212,165,60,0.5);}
+}
+.tl-name { font-size:13px; font-weight:600; color:var(--white); margin-bottom:4px; }
+.tl-date { font-size:11px; color:var(--w50); letter-spacing:0.3px; }
+.tl-step.done .tl-date { color:var(--gold-2); }
+.tl-step.current .tl-date { color:var(--gold); }
+
+.kpi-section { padding:80px 0; }
+.kpi-head { text-align:center; margin-bottom:48px; }
+.kpi-head .label {
+  font-size:11px; text-transform:uppercase; letter-spacing:3px;
+  color:var(--gold-2); font-weight:600; margin-bottom:14px;
+}
+.kpi-head h2 { font-size:clamp(32px,4vw,44px); }
+.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+@media(max-width:880px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.kpi-grid{grid-template-columns:1fr;}}
+.kpi-card {
+  padding:28px 24px; background:var(--bg-2);
+  border:1px solid var(--w08); border-radius:var(--r-md);
+  transition:all .3s var(--ease); position:relative; overflow:hidden;
+}
+.kpi-card:hover {
+  border-color:var(--gold-border-strong);
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+.kpi-card::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:0; transition:opacity .3s;
+}
+.kpi-card:hover::after { opacity:1; }
+.kpi-label {
+  font-size:11px; text-transform:uppercase; letter-spacing:1.5px;
+  color:var(--w50); margin-bottom:12px; font-weight:500;
+}
+.kpi-value {
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px; font-weight:600; color:var(--white);
+  line-height:1; margin-bottom:8px;
+}
+.kpi-value.gold {
+  background:linear-gradient(135deg, var(--gold-3), var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.kpi-trend { font-size:12px; color:var(--w50); display:flex; align-items:center; gap:6px; }
+.kpi-trend.up { color:var(--green); }
+.kpi-trend.warn { color:var(--orange); }
+
+.diag-section { padding:100px 0; background:linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%); }
+.section-head { margin-bottom:56px; }
+.section-head .label {
+  font-size:11px; text-transform:uppercase; letter-spacing:3px;
+  color:var(--gold-2); font-weight:600; margin-bottom:14px;
+}
+.section-head h2 { font-size:clamp(36px,5vw,56px); margin-bottom:16px; font-weight:500; }
+.section-head p { font-size:17px; color:var(--w70); max-width:620px; line-height:1.7; font-weight:300; }
+.diag-bars { display:flex; flex-direction:column; gap:0; }
+.diag-row {
+  display:grid; grid-template-columns:1fr 200px 50px; gap:20px;
+  align-items:center; padding:18px 0; border-bottom:1px solid var(--w08);
+}
+.diag-row:last-child { border-bottom:none; }
+.diag-name { font-size:14px; font-weight:500; color:var(--white); }
+.diag-bar { height:6px; background:var(--w08); border-radius:100px; overflow:hidden; position:relative; }
+.diag-fill { height:100%; border-radius:100px; transition:width 1s var(--ease); }
+.diag-fill.low { background:linear-gradient(90deg, var(--red), var(--orange)); }
+.diag-fill.mid { background:linear-gradient(90deg, var(--orange), var(--gold)); }
+.diag-fill.high { background:linear-gradient(90deg, var(--gold), var(--gold-2)); }
+.diag-fill.top { background:linear-gradient(90deg, var(--gold-2), var(--green)); }
+.diag-score {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-weight:600; text-align:right; color:var(--white);
+}
+.diag-score.c-red { color:var(--red); }
+.diag-score.c-orange { color:var(--orange); }
+.diag-score.c-gold { color:var(--gold); }
+.diag-score.c-green { color:var(--green); }
+@media(max-width:640px){.diag-row{grid-template-columns:1fr 100px 40px;gap:12px;}}
+
+.plano-section { padding:100px 0; }
+.fase {
+  background:var(--bg-2); border:1px solid var(--w08);
+  border-radius:var(--r-md); margin-bottom:14px; overflow:hidden;
+  transition:border-color .3s;
+}
+.fase:hover { border-color:var(--gold-border-strong); }
+.fase-head {
+  display:flex; align-items:center; gap:24px;
+  padding:28px 32px; cursor:pointer; user-select:none;
+}
+.fase-num {
+  flex-shrink:0; width:48px; height:48px; border-radius:50%;
+  background:var(--bg-1); border:1px solid var(--gold-border);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-weight:600; color:var(--gold);
+}
+.fase-titles { flex:1; }
+.fase-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px; font-weight:600; color:var(--white);
+  margin-bottom:4px; line-height:1.2;
+}
+.fase-when {
+  font-size:12px; color:var(--gold-2); letter-spacing:1px;
+  text-transform:uppercase; font-weight:600;
+}
+.fase-toggle {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--w08); display:flex; align-items:center; justify-content:center;
+  font-size:18px; color:var(--w70); transition:all .3s var(--ease);
+}
+.fase-toggle::after { content:'+'; font-weight:300; }
+.fase.open .fase-toggle::after { content:'−'; }
+.fase.open .fase-toggle { background:var(--gold); color:var(--bg-0); }
+.fase-body { max-height:0; overflow:hidden; transition:max-height .5s var(--ease-fast); }
+.fase.open .fase-body { max-height:1500px; }
+.fase-body-inner { padding:0 32px 32px; border-top:1px solid var(--w08); }
+.fase-desc {
+  font-size:15px; color:var(--w70); line-height:1.7;
+  margin:24px 0 28px; max-width:720px;
+}
+.tasks { display:flex; flex-direction:column; gap:0; }
+.task {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:14px 0; border-bottom:1px solid var(--w08);
+  cursor:pointer; transition:opacity .3s;
+}
+.task:last-child { border-bottom:none; }
+.task:hover .task-check { border-color:var(--gold); }
+.task-check {
+  flex-shrink:0; width:22px; height:22px; border-radius:6px;
+  border:1.5px solid var(--w30); margin-top:1px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; color:transparent; transition:all .25s var(--ease);
+}
+.task.done { opacity:0.55; }
+.task.done .task-title { text-decoration:line-through; color:var(--w50); }
+.task.done .task-check {
+  background:var(--gold); border-color:var(--gold); color:var(--bg-0);
+  transform:scale(1.05);
+  box-shadow:0 0 14px rgba(212,165,60,0.4);
+}
+.task.done .task-check::before { content:'✓'; }
+.task-content { flex:1; }
+.task-title { font-size:14px; font-weight:600; color:var(--white); margin-bottom:2px; }
+.task-desc { font-size:13px; color:var(--w50); line-height:1.5; }
+
+.sessoes-section { padding:100px 0; background:var(--bg-1); }
+.sessao {
+  background:var(--bg-2); border:1px solid var(--w08);
+  border-radius:var(--r-md); margin-bottom:14px; overflow:hidden;
+}
+.sessao-head {
+  display:grid; grid-template-columns:auto 1fr auto auto;
+  gap:24px; align-items:center;
+  padding:24px 32px; cursor:pointer; user-select:none;
+}
+.sessao-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px; font-weight:600; color:var(--gold); width:40px;
+}
+.sessao-title { font-size:16px; font-weight:600; color:var(--white); }
+.sessao-date { font-size:12px; color:var(--w50); font-feature-settings:'tnum'; }
+.sessao-status {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:5px 12px; border-radius:100px;
+  font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px;
+}
+.sessao-status.done { background:var(--gold-bg); color:var(--gold-2); border:1px solid var(--gold-border); }
+.sessao-status.next { background:rgba(74,139,106,0.1); color:var(--green); border:1px solid rgba(74,139,106,0.3); }
+.sessao-status.pending { background:var(--w08); color:var(--w50); border:1px solid var(--w15); }
+.sessao-body { max-height:0; overflow:hidden; transition:max-height .5s var(--ease-fast); }
+.sessao.open .sessao-body { max-height:2000px; }
+.sessao-body-inner { padding:0 32px 32px; border-top:1px solid var(--w08); }
+.sessao-block { padding:24px 0; border-bottom:1px solid var(--w08); }
+.sessao-block:last-child { border-bottom:none; }
+.sessao-block-label {
+  font-size:11px; text-transform:uppercase; letter-spacing:2px;
+  color:var(--gold-2); font-weight:600; margin-bottom:10px;
+}
+.sessao-block p { font-size:14px; color:var(--w70); line-height:1.7; }
+.sessao-block ul { list-style:none; padding:0; }
+.sessao-block ul li {
+  font-size:14px; color:var(--w70);
+  padding:6px 0; padding-left:18px; position:relative; line-height:1.6;
+}
+.sessao-block ul li::before {
+  content:''; position:absolute; left:0; top:14px;
+  width:6px; height:6px; border-radius:50%; background:var(--gold);
+}
+.insights-section { padding:120px 0; }
+.insight-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media(max-width:780px){.insight-grid{grid-template-columns:1fr;}}
+.insight-card {
+  padding:36px;
+  background:linear-gradient(135deg, var(--bg-2) 0%, var(--bg-1) 100%);
+  border:1px solid var(--gold-border); border-radius:var(--r-md);
+  position:relative; overflow:hidden;
+}
+.insight-card::before {
+  content:'"'; position:absolute; top:-30px; left:24px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:160px; color:var(--gold); opacity:0.18; line-height:1;
+}
+.insight-card.featured {
+  background:linear-gradient(135deg, rgba(212,165,60,0.08), rgba(196,133,74,0.04));
+  border-color:var(--gold); grid-column:1 / -1;
+  text-align:center; padding:64px 48px;
+}
+.insight-card.featured::before {
+  font-size:200px; left:50%; transform:translateX(-50%); top:-40px;
+}
+.insight-text {
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px; font-weight:500; color:var(--white);
+  line-height:1.4; font-style:italic;
+  margin-bottom:18px; position:relative; z-index:1;
+}
+.insight-card.featured .insight-text {
+  font-size:32px; max-width:720px; margin:0 auto 20px;
+}
+.insight-author {
+  font-size:11px; color:var(--gold-2);
+  letter-spacing:2px; text-transform:uppercase; font-weight:600;
+}
+
+.agenda-section { padding:100px 0; background:var(--bg-1); }
+.agenda-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+@media(max-width:780px){.agenda-grid{grid-template-columns:1fr;}}
+.evento {
+  display:grid; grid-template-columns:80px 1fr auto; gap:24px;
+  align-items:center; padding:24px 28px;
+  background:var(--bg-2); border:1px solid var(--w08);
+  border-radius:var(--r-md); transition:all .3s;
+}
+.evento:hover { border-color:var(--gold-border-strong); transform:translateY(-2px); }
+.evento.urgent { border-color:var(--gold); background:linear-gradient(135deg, rgba(212,165,60,0.08), var(--bg-2)); }
+.evento-data {
+  text-align:center; padding-right:24px;
+  border-right:1px solid var(--w08);
+}
+.evento-dia {
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px; font-weight:600; color:var(--gold); line-height:1;
+}
+.evento-mes {
+  font-size:10px; text-transform:uppercase; letter-spacing:2px;
+  color:var(--w50); margin-top:4px; font-weight:600;
+}
+.evento-info-titulo { font-size:15px; font-weight:600; color:var(--white); margin-bottom:4px; }
+.evento-info-desc { font-size:12px; color:var(--w50); line-height:1.5; }
+.evento-tag {
+  font-size:10px; padding:5px 11px; border-radius:100px;
+  font-weight:700; text-transform:uppercase; letter-spacing:1.5px; white-space:nowrap;
+}
+.evento-tag.coletiva { background:var(--gold-bg); color:var(--gold-2); }
+.evento-tag.individual { background:rgba(74,139,106,0.1); color:var(--green); }
+.evento-tag.imersao { background:rgba(196,133,74,0.1); color:var(--orange); }
+
+.nb-section { padding:100px 0; }
+.nb-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:48px; }
+@media(max-width:780px){.nb-grid{grid-template-columns:1fr;}}
+.nb-card {
+  padding:36px 28px;
+  background:linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+  border:1px solid var(--w08); border-radius:var(--r-md);
+  position:relative; overflow:hidden;
+}
+.nb-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--gold), var(--gold-dark));
+}
+.nb-when {
+  font-size:11px; text-transform:uppercase; letter-spacing:2px;
+  color:var(--gold-2); font-weight:700; margin-bottom:14px;
+}
+.nb-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px; font-weight:600; color:var(--white);
+  margin-bottom:14px; line-height:1.2;
+}
+.nb-desc { font-size:13px; color:var(--w70); line-height:1.7; }
+
+.mentores-section {
+  padding:120px 0;
+  background:url('https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-header-dupla.png') center/cover no-repeat;
+  position:relative; text-align:center;
+  min-height:480px; display:flex; align-items:center;
+}
+.mentores-section::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(10,9,8,0.85) 0%, rgba(10,9,8,0.5) 50%, rgba(10,9,8,0.95) 100%);
+}
+.mentores-content { position:relative; z-index:2; }
+.mentores-label {
+  font-size:11px; text-transform:uppercase; letter-spacing:3px;
+  color:var(--gold-2); font-weight:600; margin-bottom:18px;
+}
+.mentores-content h2 { font-size:clamp(36px,5vw,56px); font-weight:500; margin-bottom:24px; }
+.mentores-content h2 .gold {
+  background:linear-gradient(135deg, var(--gold-3), var(--gold));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.mentores-content p {
+  font-size:18px; color:var(--w70);
+  max-width:680px; margin:0 auto;
+  line-height:1.7; font-weight:300;
+}
+
+.footer { padding:60px 0 40px; border-top:1px solid var(--w08); text-align:center; }
+.footer-logo {
+  width:64px; height:64px;
+  background:url('https://raw.githubusercontent.com/pofazze/cpp-brand-assets/main/cpp-logo.png') center/contain no-repeat;
+  margin:0 auto 20px; opacity:0.7;
+}
+.footer-brand {
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px; font-weight:600; color:var(--gold);
+  letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;
+}
+.footer-info { font-size:13px; color:var(--w50); line-height:1.7; }
+.footer-update {
+  font-size:11px; color:var(--w30); margin-top:18px;
+  letter-spacing:1px; text-transform:uppercase;
+}
+
+/* ============ MOBILE OPTIMIZATIONS ============ */
+@media(max-width:780px){
+  .wrap, .wrap-narrow { padding:0 20px; }
+  .topnav { padding:10px 16px; }
+  .topnav-inner { gap:12px; }
+  .topnav-brand span { font-size:14px; }
+  .topnav-logo { width:26px; height:26px; }
+  .topnav-mid { display:none; }
+  .topnav-cta { display:none; }
+  .hero { padding:96px 0 60px; min-height:auto; }
+  .hero-badge { font-size:10px; padding:6px 14px; letter-spacing:2px; margin-bottom:24px; }
+  .hero-grid { gap:36px; }
+  .hero-left h1 { font-size:42px; margin-bottom:18px; }
+  .hero-sub { font-size:15px; margin-bottom:24px; }
+  .hero-meta-pill { font-size:11px; padding:6px 12px; }
+  .btn { padding:12px 22px; font-size:11px; letter-spacing:1.2px; width:100%; justify-content:center; }
+  .hero-cta { flex-direction:column; gap:10px; }
+  .transformation-card { padding:24px; }
+  .tc-stage-value { font-size:36px; }
+  .kpi-section, .diag-section, .plano-section, .sessoes-section, .insights-section, .agenda-section, .nb-section { padding:64px 0; }
+  .section-head { margin-bottom:36px; }
+  .section-head h2 { font-size:30px; }
+  .section-head p { font-size:14px; }
+  .kpi-card { padding:20px 18px; }
+  .kpi-value { font-size:32px; }
+  .kpi-label { font-size:10px; }
+  .diag-row { grid-template-columns:1fr 70px 32px; gap:8px; padding:12px 0; }
+  .diag-name { font-size:13px; }
+  .diag-bar { width:auto; }
+  .diag-score { font-size:18px; }
+  .fase-head { padding:18px 20px; gap:14px; }
+  .fase-num { width:38px; height:38px; font-size:18px; }
+  .fase-title { font-size:18px; }
+  .fase-when { font-size:10px; letter-spacing:0.8px; }
+  .fase-toggle { width:30px; height:30px; font-size:16px; }
+  .fase-body-inner { padding:0 20px 24px; }
+  .fase-desc { font-size:14px; margin:18px 0 20px; }
+  .task { padding:12px 0; gap:11px; }
+  .task-title { font-size:13px; }
+  .task-desc { font-size:12px; }
+  .sessao-head { grid-template-columns:auto 1fr; gap:12px; padding:18px 20px; }
+  .sessao-num { font-size:20px; width:32px; }
+  .sessao-title { font-size:14px; }
+  .sessao-date { grid-column:1/-1; padding-left:44px; font-size:11px; }
+  .sessao-status { grid-column:1/-1; justify-self:start; margin-left:44px; font-size:9px; padding:4px 10px; }
+  .sessao-body-inner { padding:0 20px 24px; }
+  .sessao-block { padding:18px 0; }
+  .sessao-block p, .sessao-block ul li { font-size:13px; }
+  .insight-card { padding:24px; }
+  .insight-card.featured { padding:40px 24px; }
+  .insight-text { font-size:18px; }
+  .insight-card.featured .insight-text { font-size:22px; }
+  .evento { grid-template-columns:60px 1fr; gap:14px; padding:18px 18px; }
+  .evento-data { padding-right:14px; }
+  .evento-dia { font-size:28px; }
+  .evento-info-titulo { font-size:13px; }
+  .evento-info-desc { font-size:11px; }
+  .evento-tag { grid-column:1/-1; justify-self:start; margin-left:74px; font-size:9px; padding:4px 10px; }
+  .nb-card { padding:28px 22px; }
+  .nb-title { font-size:20px; }
+  .mentores-section { min-height:360px; padding:80px 0; }
+  .mentores-content h2 { font-size:32px; }
+  .footer { padding:40px 0 28px; }
+  .footer-logo { width:48px; height:48px; }
+  .footer-info { font-size:12px; }
+}
+
+@media(max-width:420px){
+  .hero-left h1 { font-size:36px; }
+  .tc-stage-value { font-size:30px; }
+  .section-head h2 { font-size:26px; }
+  .kpi-value { font-size:28px; }
+}
+
+@media print {
+  body { background:#fff; color:#000; }
+  .topnav, .insight-card::before, .mentores-section::before { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Barra de progresso fixa -->
+<div class="progress-bar-top"><div class="progress-bar-fill" id="progBarFill"></div></div>
+
+<!-- Side nav (desktop) -->
+<nav class="sidenav" id="sidenav">
+  <a href="#kpis" data-label="Visão Geral" data-target="kpis"></a>
+  <a href="#diagnostico" data-label="Diagnóstico" data-target="diagnostico"></a>
+  <a href="#plano" data-label="Plano" data-target="plano"></a>
+  <a href="#sessoes" data-label="Sessões" data-target="sessoes"></a>
+  <a href="#agenda" data-label="Agenda" data-target="agenda"></a>
+  <a href="#material" data-label="Material" data-target="material"></a>
+  <a href="#mentores" data-label="Mentores" data-target="mentores"></a>
+</nav>
+
+<!-- WhatsApp flutuante -->
+<a class="wa-float" href="https://wa.me/5583993527775?text=Oi%20Stephany%2C%20sou%20Dr.%20Tiago%20Blaya%2C%20mentorado%20CPP.%20Preciso%20de%20ajuda%20com..." target="_blank" rel="noopener">
+  <span class="wa-icon">
+    <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.7 4.3 3.8.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.7.5 3.3 1.3 4.7L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.2.8.8-3.2-.2-.3C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/></svg>
+  </span>
+  <span class="wa-label">Falar com a equipe</span>
+</a>
+
+<!-- Hint instalação PWA -->
+<div class="install-hint" id="installHint">
+  <span>Instala como app no seu celular</span>
+  <button id="installBtn">Instalar</button>
+  <button class="close-x" onclick="document.getElementById('installHint').classList.remove('show')">×</button>
+</div>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-brand">
+      <div class="topnav-logo"></div>
+      <span>Cirurgião Particular Premium</span>
+    </div>
+    <div class="topnav-mid">
+      <span class="doc-name">Dr. Tiago Blaya</span>
+    </div>
+    <div class="topnav-cta">
+      <span style="color:var(--w30);">Atualizado 23/04/2026</span>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="logo-mini"></div>
+      <span>Mentoria CPP</span>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-left">
+        <h1>Bem-vindo de volta,<br><span class="name">Dr. Tiago Blaya</span></h1>
+        <p class="hero-sub">Antes de mudar o consultório, mude quem você é. Este é o seu mapa de transformação na CPP — onde você sai dos <strong style="color:var(--gold-2);">10 particulares pingados</strong> para se tornar a <strong style="color:var(--gold-2);">referência em Lipedema de Porto Alegre</strong>, com sala expandida e protocolo próprio.</p>
+
+        <div class="hero-meta">
+          <span class="hero-meta-pill"><strong>Cirurgia Vascular</strong> · Lipedema</span>
+          <span class="hero-meta-pill"><strong>Porto Alegre</strong> · RS</span>
+          <span class="hero-meta-pill">Shopping <strong>Barro do Papo</strong></span>
+          <span class="hero-meta-pill">Time: <strong>Juliana</strong> · Elayne · Tayane</span>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#plano" class="btn btn-primary">Plano de Transformação</a>
+          <a href="#agenda" class="btn btn-ghost">Agenda CPP</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="transformation-card">
+          <div class="tc-label">SUA TRAVESSIA · 6 MESES</div>
+          <div class="tc-stage">
+            <span class="tc-stage-label">HOJE · 10 PARTICULARES/MÊS</span>
+            <span class="tc-stage-value">R$ 9k<span style="font-size:20px;color:var(--w50);">/mês particular</span></span>
+          </div>
+          <div class="tc-arrow">↓</div>
+          <div class="tc-stage">
+            <span class="tc-stage-label">EM 6 MESES · 20+ PARTICULARES/SEMANA</span>
+            <span class="tc-stage-value gold">R$ 80k+<span style="font-size:20px;color:var(--w50);">/mês particular</span></span>
+          </div>
+          <div class="tc-meta">
+            <div class="tc-meta-item"><span class="lab">SALA</span><span class="val">40m² → 80m²</span></div>
+            <div class="tc-meta-item"><span class="lab">LIPEDEMA · TICKET</span><span class="val">R$ 15-30k</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kpi-section" id="kpis">
+  <div class="wrap">
+    <div class="kpi-head">
+      <div class="label">Visão Geral</div>
+      <h2>Os números que importam</h2>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Particular hoje</div>
+        <div class="kpi-value" data-count="9" data-prefix="R$ " data-suffix="k">R$ 9k</div>
+        <div class="kpi-trend">~10 particulares · R$ 900 cada</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Meta Particular 3m</div>
+        <div class="kpi-value gold" data-count="40" data-prefix="R$ " data-suffix="k">R$ 40k</div>
+        <div class="kpi-trend up">+4x vs hoje</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Meta Particular 6m</div>
+        <div class="kpi-value gold" data-count="80" data-prefix="R$ " data-suffix="k">R$ 80k</div>
+        <div class="kpi-trend up">20+ particulares/semana</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Próxima Sessão</div>
+        <div class="kpi-value" style="font-size:28px;">25/04 · 18h</div>
+        <div class="kpi-trend warn">Aula coletiva — Sexta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="diag-section" id="diagnostico">
+  <div class="wrap-narrow">
+    <div class="section-head">
+      <div class="label">Termômetro · Sessão 01</div>
+      <h2>Onde você está hoje</h2>
+      <p>8 dimensões agrupadas nos 4 pilares da CPP. Cada barra evolui a cada reunião conforme você executa o plano. <strong style="color:var(--gold-2);">A diferença não é técnica — é de identidade.</strong></p>
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold-2);margin:36px 0 12px;">🧠 Mentalidade</h3>
+    <div class="diag-bars">
+      <div class="diag-row"><span class="diag-name">Permissão para cobrar premium</span><div class="diag-bar"><div class="diag-fill mid" style="width:30%"></div></div><span class="diag-score c-orange">3</span></div>
+      <div class="diag-row"><span class="diag-name">Disposição para aparecer no digital</span><div class="diag-bar"><div class="diag-fill mid" style="width:40%"></div></div><span class="diag-score c-orange">4</span></div>
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold-2);margin:36px 0 12px;">💰 Comercial</h3>
+    <div class="diag-bars">
+      <div class="diag-row"><span class="diag-name">Captação de pacientes particulares</span><div class="diag-bar"><div class="diag-fill low" style="width:25%"></div></div><span class="diag-score c-red">2</span></div>
+      <div class="diag-row"><span class="diag-name">Produto encapsulado (Lipedema 360)</span><div class="diag-bar"><div class="diag-fill low" style="width:10%"></div></div><span class="diag-score c-red">1</span></div>
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold-2);margin:36px 0 12px;">👥 Operacional</h3>
+    <div class="diag-bars">
+      <div class="diag-row"><span class="diag-name">Estrutura de time (Ju · Elayne · Tayane)</span><div class="diag-bar"><div class="diag-fill mid" style="width:50%"></div></div><span class="diag-score c-orange">5</span></div>
+      <div class="diag-row"><span class="diag-name">Script comercial estruturado</span><div class="diag-bar"><div class="diag-fill low" style="width:15%"></div></div><span class="diag-score c-red">1</span></div>
+    </div>
+
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold-2);margin:36px 0 12px;">📱 Presença</h3>
+    <div class="diag-bars">
+      <div class="diag-row"><span class="diag-name">Posicionamento de conteúdo</span><div class="diag-bar"><div class="diag-fill low" style="width:25%"></div></div><span class="diag-score c-red">2</span></div>
+      <div class="diag-row"><span class="diag-name">Prova social estruturada</span><div class="diag-bar"><div class="diag-fill low" style="width:15%"></div></div><span class="diag-score c-red">1</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="plano-section" id="plano" data-section>
+  <div class="wrap-narrow">
+    <div class="section-head">
+      <div class="label">Plano de Transformação</div>
+      <h2>Os 6 movimentos da sua travessia</h2>
+      <p>Cada movimento ataca um pilar do <strong>Método PREMIUM</strong>. A sequência não é negociável — Postura primeiro, Escala por último. Pular etapa quebra o resto. Atualizado a cada sessão.</p>
+    </div>
+
+    <div class="fase open">
+      <div class="fase-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="fase-num">1</div>
+        <div class="fase-titles">
+          <div class="fase-title">Reposicionamento · Expandir para 80m²</div>
+          <div class="fase-when">Pilar R · Abril · Maio 2026</div>
+        </div>
+        <div class="fase-toggle"></div>
+      </div>
+      <div class="fase-body"><div class="fase-body-inner">
+        <p class="fase-desc">O shopping Barro do Papo te deu uma oportunidade única: a sala adjacente por R$ 300k negociados em parcelas de R$ 40k. Dobrar o espaço é condição para receber 15-20 particulares por semana e abrir sala de injetáveis. Oportunidade única — não se arrepende pelo que se faz.</p>
+        <div class="tasks">
+          <div class="task" data-task-id="f1-t1"><div class="task-check"></div><div class="task-content"><div class="task-title">Fechar negociação em 5x R$ 40k</div><div class="task-desc">Com corretor, valor ridículo, prazo mais longo.</div></div></div>
+          <div class="task" data-task-id="f1-t2"><div class="task-check"></div><div class="task-content"><div class="task-title">Definir fluxo operacional na sala nova</div><div class="task-desc">Sala de consulta · sala de injetáveis · sala de espera premium.</div></div></div>
+          <div class="task" data-task-id="f1-t3"><div class="task-check"></div><div class="task-content"><div class="task-title">Direcionar o particular para o ambiente certo</div><div class="task-desc">Ambiente entrega a proposta de valor. Paciente premium precisa sentir premium.</div></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="fase-num">2</div>
+        <div class="fase-titles"><div class="fase-title">Encantamento · Protocolo Lipedema 360</div><div class="fase-when">Pilar E · Próxima semana</div></div>
+        <div class="fase-toggle"></div>
+      </div>
+      <div class="fase-body"><div class="fase-body-inner">
+        <p class="fase-desc">Ninguém paga premium por algo sem nome. Hoje você vende "tratamento de Lipedema" — igual aos outros. Daqui pra frente você vende o <strong>Protocolo Lipedema 360</strong>: consulta diagnóstica + plano + cirurgia + acompanhamento + manutenção. Nome próprio, jornada mapeada, preço de autoridade.</p>
+        <div class="tasks">
+          <div class="task" data-task-id="f2-t1"><div class="task-check"></div><div class="task-content"><div class="task-title">Trazer 1º draft do Protocolo Lipedema 360</div><div class="task-desc">Nome, etapas pré/intra/pós, entregáveis, preço alvo R$ 15-30k.</div></div></div>
+          <div class="task" data-task-id="f2-t2"><div class="task-check"></div><div class="task-content"><div class="task-title">Patrick e Matheus revisam o protocolo</div><div class="task-desc">Sessão de review antes de publicar.</div></div></div>
+          <div class="task" data-task-id="f2-t3"><div class="task-check"></div><div class="task-content"><div class="task-title">Criar identidade visual do protocolo</div><div class="task-desc">Material de apoio, manual do paciente, selos de marca.</div></div></div>
+          <div class="task" data-task-id="f2-t4"><div class="task-check"></div><div class="task-content"><div class="task-title">Primeiro fechamento com o novo nome</div><div class="task-desc">Testar o pitch novo com a primeira lead qualificada.</div></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="fase-num">3</div>
+        <div class="fase-titles"><div class="fase-title">Inteligência Comercial · Treinar a Elayne</div><div class="fase-when">Pilar I · Contínuo</div></div>
+        <div class="fase-toggle"></div>
+      </div>
+      <div class="fase-body"><div class="fase-body-inner">
+        <p class="fase-desc">Elayne é experiente mas conservadora — presencial bom, texto fraco. Ela não liga proativamente, não contorna objeção. Lead que entra pelo WhatsApp tá escapando. Ou ela vira Account Manager de Conversão, ou você muda a pessoa.</p>
+        <div class="tasks">
+          <div class="task" data-task-id="f3-t1"><div class="task-check"></div><div class="task-content"><div class="task-title">Acompanhar 5 conversas da Elayne ao vivo</div><div class="task-desc">Olho no olho · diagnosticar onde perde o lead.</div></div></div>
+          <div class="task" data-task-id="f3-t2"><div class="task-check"></div><div class="task-content"><div class="task-title">Criar script de conversão com Patrick/Claude</div><div class="task-desc">Pitch de abertura · qualificação · objeção · agendamento.</div></div></div>
+          <div class="task" data-task-id="f3-t3"><div class="task-check"></div><div class="task-content"><div class="task-title">Rotina diária: Elayne reporta números de fechamento</div><div class="task-desc">Quantos leads · quantos agendaram · quantos fecharam.</div></div></div>
+          <div class="task" data-task-id="f3-t4"><div class="task-check"></div><div class="task-content"><div class="task-title">Avaliar Tayane como Closer de Lipedema</div><div class="task-desc">Maior talento dela é conversação — treinar para vender o Protocolo 360.</div></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="fase-num">4</div>
+        <div class="fase-titles"><div class="fase-title">Marketing de Atração · Gravação em SP + Tráfego Pro</div><div class="fase-when">Pilar M · Próximas 2 semanas</div></div>
+        <div class="fase-toggle"></div>
+      </div>
+      <div class="fase-body"><div class="fase-body-inner">
+        <p class="fase-desc">Você vai para São Paulo gravar com videomaker do Patrick. 10 reels de qualidade na primeira página do Instagram — não 2 por dia sem estratégia. Paralelamente, contratar gestor de tráfego pago profissional. Congruência total: conteúdo ↔ tráfego ↔ clínica ↔ pitch.</p>
+        <div class="tasks">
+          <div class="task" data-task-id="f4-t1"><div class="task-check"></div><div class="task-content"><div class="task-title">Viagem para SP · gravar com videomaker</div><div class="task-desc">Patrick acompanha · 10 reels encenados com posicionamento.</div></div></div>
+          <div class="task" data-task-id="f4-t2"><div class="task-check"></div><div class="task-content"><div class="task-title">Limpar Instagram · primeira página de autoridade</div><div class="task-desc">Remover posts antigos fora de posicionamento.</div></div></div>
+          <div class="task" data-task-id="f4-t3"><div class="task-check"></div><div class="task-content"><div class="task-title">Contratar gestor de tráfego profissional</div><div class="task-desc">Substituir pessoa genérica atual · CAC e ROAS mapeados.</div></div></div>
+          <div class="task" data-task-id="f4-t4"><div class="task-check"></div><div class="task-content"><div class="task-title">Gravar 3 depoimentos de pacientes</div><div class="task-desc">Prova social é ouro · celular resolve · roteiro padrão.</div></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="fase-num">5</div>
+        <div class="fase-titles"><div class="fase-title">Postura Premium · Liberar a Juliana</div><div class="fase-when">Pilar P · Contínuo</div></div>
+        <div class="fase-toggle"></div>
+      </div>
+      <div class="fase-body"><div class="fase-body-inner">
+        <p class="fase-desc">A Ju é parceira operacional — não é limite, é gargalo. Instagram + WhatsApp + financeiro + pós-venda concentrados nela. Se ela afunda, tudo afunda. Ela precisa virar Head of Marketing com equipe abaixo, não executar tudo sozinha. E a casa respira.</p>
+        <div class="tasks">
+          <div class="task" data-task-id="f5-t1"><div class="task-check"></div><div class="task-content"><div class="task-title">Tirar Ju do atendimento WhatsApp diário</div><div class="task-desc">Secretária bem treinada ou segundo atendente.</div></div></div>
+          <div class="task" data-task-id="f5-t2"><div class="task-check"></div><div class="task-content"<div class="task-content"><div class="task-title">Definir escopo estratégico dela</div><div class="task-desc">Head of Marketing · direciona gestor de tráfego + Nahara.</div></div></div>
+          <div class="task" data-task-id="f5-t3"><div class="task-check"></div><div class="task-content"><div class="task-title">Alinhar ritmo de vida pessoal</div><div class="task-desc">Menos 6 viagens/ano · mais presença consistente · casa alinhada.</div></div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="fase">
+      <div class="fase-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="fase-num">6</div>
+        <div class="fase-titles"><div class="fase-title">Modelo + Escala · Referência em Lipedema</div><div class="fase-when">Pilares U + M · 3-12 meses</div></div>
+        <div class="fase-toggle"></div>
+      </div>
+      <div class="fase-body"><div class="fase-body-inner">
+        <p class="fase-desc">Meta explícita do Matheus: você tem potencial para superá-lo financeiramente em 12 meses — pela área (Lipedema tem ticket alto) + pelo produto (Protocolo 360). A CPP quer seu case de sucesso máximo. Não é marketing — é matemática de disciplina aplicada.</p>
+        <div class="tasks">
+          <div class="task" data-task-id="f6-t1"><div class="task-check"></div><div class="task-content"><div class="task-title">15-20 particulares/semana (era 10/mês)</div><div class="task-desc">Sala 80m² + secretária convertendo + tráfego pago rodando.</div></div></div>
+          <div class="task" data-task-id="f6-t2"><div class="task-check"></div><div class="task-content"><div class="task-title">Faturamento particular supera o convênio</div><div class="task-desc">Inversão natural após 6-9 meses de execução disciplinada.</div></div></div>
+          <div class="task" data-task-id="f6-t3"><div class="task-check"></div><div class="task-content"><div class="task-title">Imersão 06-07/Ago · Grupo Acelerador</div><div class="task-desc">600 cirurgiões · networking premium · case CPP.</div></div></div>
+          <div class="task" data-task-id="f6-t4"><div class="task-check"></div><div class="task-content"><div class="task-title">Ser referência em Lipedema em Porto Alegre</div><div class="task-desc">Quando perguntam "quem trata Lipedema em POA", seu nome aparece.</div></div></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sessoes-section" id="sessoes" data-section>
+  <div class="wrap-narrow">
+    <div class="section-head">
+      <div class="label">Histórico de Sessões</div>
+      <h2>Onboarding + 3 reuniões individuais</h2>
+      <p>O coração da mentoria. Onboarding com as 60 perguntas + 3 sessões 1-a-1 com Patrick e Matheus. Cada sessão é gravada e suas decisões ficam registradas aqui pra você consultar quando quiser.</p>
+    </div>
+
+    <div class="sessao open">
+      <div class="sessao-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sessao-num">01</div>
+        <div class="sessao-title">Onboarding · Diagnóstico profundo</div>
+        <div class="sessao-date">26 março · ~1h40</div>
+        <div class="sessao-status done">Realizada</div>
+      </div>
+      <div class="sessao-body"><div class="sessao-body-inner">
+        <div class="sessao-block">
+          <div class="sessao-block-label">Diagnóstico</div>
+          <p>Cirurgião vascular com estrutura real em Porto Alegre: clínica própria no shopping Barro do Papo, time formado (esposa Juliana · Elayne · Tayane), investimento em marketing. Mas operando com 5-10% de particulares/mês e ticket de consulta de R$ 900. A técnica está dominada. O que falta é produto nomeado, time liberado e permissão para cobrar o que você vale.</p>
+        </div>
+        <div class="sessao-block">
+          <div class="sessao-block-label">Decisões da sessão</div>
+          <ul>
+            <li><strong>Reposicionamento:</strong> fechar a sala adjacente (40m² → 80m²) em 5x R$ 40k</li>
+            <li><strong>Encantamento:</strong> criar Protocolo Lipedema 360 com nome, etapas e preço premium (primeiro draft em 1 semana)</li>
+            <li><strong>Inteligência Comercial:</strong> acompanhar Elayne nas conversas com leads · treinar com script estruturado</li>
+            <li><strong>Marketing:</strong> viagem para SP gravar 10 reels com videomaker do Patrick · limpar o Instagram</li>
+            <li><strong>Marketing:</strong> profissionalizar tráfego pago · contratar gestor qualificado</li>
+            <li><strong>Modelo:</strong> transicionar Tayane para Closer de Lipedema (maior talento dela)</li>
+            <li><strong>Prova social:</strong> gravar 2-3 depoimentos de pacientes operadas</li>
+          </ul>
+        </div>
+        <div class="sessao-block">
+          <div class="sessao-block-label">Próximos passos</div>
+          <ul>
+            <li>Trazer o primeiro draft do Protocolo Lipedema 360 até 02/04</li>
+            <li>Ir para São Paulo gravar conteúdo com o videomaker</li>
+            <li>Acompanhar Elayne ao vivo nas próximas conversas com leads</li>
+            <li>Negociar sala 80m² em parcelas de R$ 40k</li>
+          </ul>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="sessao">
+      <div class="sessao-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="sessao-num">02</div>
+        <div class="sessao-title">Devolutiva Comercial · Março com resultado</div>
+        <div class="sessao-date">02 abril</div>
+        <div class="sessao-status done">Realizada</div>
+      </div>
+      <div class="sessao-body"><div class="sessao-body-inner">
+        <div class="sessao-block">
+          <div class="sessao-block-label">O que aconteceu</div>
+          <p>Março foi o maior mês de particulares da história do consultório. Os números começaram a subir — ainda em vibração, mas o movimento já é outro. Discussão sobre pipeline de leads, conversão e próximos saltos: 12, 16, 24 particulares/mês.</p>
+        </div>
+        <div class="sessao-block">
+          <div class="sessao-block-label">Decisões da sessão</div>
+          <ul>
+            <li>Estruturar pipeline de leads com Juliana coordenando</li>
+            <li>Manter foco disciplinado no Protocolo Lipedema 360</li>
+            <li>Avançar com o treinamento da Elayne (script em execução)</li>
+          </ul>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="insights-section">
+  <div class="wrap-narrow">
+    <div class="section-head" style="text-align:center;">
+      <div class="label">Insights da Mentoria</div>
+      <h2>Frases que ficam</h2>
+      <p style="margin:0 auto;">Princípios trabalhados nas sessões. Volte aqui sempre que precisar de combustível.</p>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card featured">
+        <p class="insight-text">Você já tem sua estrutura, irmão. Tem que cobrar. A diferença não é técnica — é de identidade.</p>
+        <div class="insight-author">Patrick Suyti · sua sessão 01</div>
+      </div>
+      <div class="insight-card">
+        <p class="insight-text">Você dá o passo e Deus dá o chão. O crescimento mora na curva — porque na reta todo mundo acelera.</p>
+        <div class="insight-author">Dr. Matheus Jeronimo</div>
+      </div>
+      <div class="insight-card">
+        <p class="insight-text">Imagine atender 15-20 pacientes pagando R$ 900 antecipado por semana. Você já fatura bem pelo que está fazendo hoje. A hora que tu passar a fazer certo...</p>
+        <div class="insight-author">Dr. Matheus Jeronimo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="material-section" id="material" data-section>
+  <div class="wrap-narrow">
+    <div class="section-head">
+      <div class="label">Material Exclusivo</div>
+      <h2>Sua biblioteca CPP</h2>
+      <p>O Método PREMIUM gravado em ~50 aulas: 1 aula em conjunto + 3 aulas do Dr. Matheus + 3 aulas do Patrick por pilar. Hospedado na MemberKit. <strong>Assistir sem aplicar é entretenimento — queremos transformação.</strong></p>
+    </div>
+
+    <div class="material-grid">
+      <a class="material-card" href="#" target="_blank" rel="noopener">
+        <div class="material-card-icon">▶</div>
+        <div class="material-card-title">Método PREMIUM completo</div>
+        <div class="material-card-desc">Os 7 pilares: Postura · Reposicionamento · Encantamento · Marketing · Inteligência Comercial · Modelo · Escala. ~16h de aulas com Patrick e Matheus.</div>
+        <div class="material-card-cta">Acessar MemberKit</div>
+      </a>
+      <a class="material-card locked" href="#">
+        <div class="material-card-icon">📋</div>
+        <div class="material-card-title">Scripts comerciais</div>
+        <div class="material-card-desc">Como desviar convênio para particular, como apresentar valor antes de preço, como contornar "tá caro" sem dar desconto.</div>
+        <div class="material-card-cta">Em breve</div>
+      </a>
+      <a class="material-card locked" href="#">
+        <div class="material-card-icon">📊</div>
+        <div class="material-card-title">Templates operacionais</div>
+        <div class="material-card-desc">Contrato de acompanhamento, descritivo de Protocolo (com seu nome), planilha de faturamento, fluxo de caixa do consultório premium.</div>
+        <div class="material-card-cta">Em breve</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="agenda-section" id="agenda" data-section>
+  <div class="wrap-narrow">
+    <div class="section-head">
+      <div class="label">Agenda da Mentoria</div>
+      <h2>Próximos compromissos</h2>
+      <p>Aulas coletivas, desafios e imersões. Bloqueia na sua agenda — é onde a transformação acontece.</p>
+    </div>
+
+    <div class="agenda-grid">
+      <div class="evento urgent">
+        <div class="evento-data"><div class="evento-dia">25</div><div class="evento-mes">Abr</div></div>
+        <div class="evento-info">
+          <div class="evento-info-titulo">Aula coletiva · Desviar convênio para particular</div>
+          <div class="evento-info-desc">Sexta 18h · case Leonidas · ao vivo no Zoom</div>
+        </div>
+        <span class="evento-tag coletiva">Coletiva</span>
+      </div>
+
+      <div class="evento urgent">
+        <div class="evento-data"><div class="evento-dia">04</div><div class="evento-mes">Mai</div></div>
+        <div class="evento-info">
+          <div class="evento-info-titulo">Desafio Online · Dia 1</div>
+          <div class="evento-info-desc">Segunda 20h · 4 dias intensivos · Premium</div>
+        </div>
+        <span class="evento-tag coletiva">Coletiva</span>
+      </div>
+
+      <div class="evento">
+        <div class="evento-data"><div class="evento-dia">05</div><div class="evento-mes">Mai</div></div>
+        <div class="evento-info">
+          <div class="evento-info-titulo">Desafio Online · Dia 2</div>
+          <div class="evento-info-desc">Terça 20h · Vendas + posicionamento</div>
+        </div>
+        <span class="evento-tag coletiva">Coletiva</span>
+      </div>
+
+      <div class="evento">
+        <div class="evento-data"><div class="evento-dia">06</div><div class="evento-mes">Mai</div></div>
+        <div class="evento-info">
+          <div class="evento-info-titulo">Desafio Online · Dia 3</div>
+          <div class="evento-info-desc">Quarta 20h · Marketing e captação</div>
+        </div>
+        <span class="evento-tag coletiva">Coletiva</span>
+      </div>
+
+      <div class="evento">
+        <div class="evento-data"><div class="evento-dia">07</div><div class="evento-mes">Mai</div></div>
+        <div class="evento-info">
+          <div class="evento-info-titulo">Desafio Online · Dia 4 · Pitch</div>
+          <div class="evento-info-desc">Quinta 20h · Encerramento + ofertas</div>
+        </div>
+        <span class="evento-tag coletiva">Coletiva</span>
+      </div>
+
+      <div class="evento">
+        <div class="evento-data"><div class="evento-dia">26</div><div class="evento-mes">Mai</div></div>
+        <div class="evento-info">
+          <div class="evento-info-titulo">Sessões coletivas semanais</div>
+          <div class="evento-info-desc">Toda segunda 20h · começa após o Desafio</div>
+        </div>
+        <span class="evento-tag coletiva">Coletiva</span>
+      </div>
+
+      <div class="evento">
+        <div class="evento-data"><div class="evento-dia">06</div><div class="evento-mes">Ago</div></div>
+        <div class="evento-info">
+          <div class="evento-info-titulo">Imersão Grupo Acelerador · Dia 1</div>
+          <div class="evento-info-desc">Presencial · 600 cirurgiões · networking + casos</div>
+        </div>
+        <span class="evento-tag imersao">Imersão</span>
+      </div>
+
+      <div class="evento">
+        <div class="evento-data"><div class="evento-dia">07</div><div class="evento-mes">Ago</div></div>
+        <div class="evento-info">
+          <div class="evento-info-titulo">Imersão Grupo Acelerador · Dia 2</div>
+          <div class="evento-info-desc">Presencial · encerramento + planejamento</div>
+        </div>
+        <span class="evento-tag imersao">Imersão</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nb-section">
+  <div class="wrap-narrow">
+    <div class="section-head" style="text-align:center;">
+      <div class="label">Foco do Momento</div>
+      <h2>Sua próxima missão</h2>
+      <p style="margin:0 auto;">Onde colocar energia agora. Sem dispersão — três frentes que destravam tudo o resto.</p>
+    </div>
+
+    <div class="nb-grid">
+      <div class="nb-card">
+        <div class="nb-when">Esta semana</div>
+        <div class="nb-title">Protocolo Lipedema 360</div>
+        <div class="nb-desc">Trazer o primeiro draft: nome, etapas pré/intra/pós, preço alvo R$ 15-30k. Sair do "tratamento de Lipedema" genérico para o protocolo com seu nome.</div>
+      </div>
+      <div class="nb-card">
+        <div class="nb-when">Próximas 2 semanas</div>
+        <div class="nb-title">Viagem SP · gravar 10 reels</div>
+        <div class="nb-desc">Gravação com videomaker do Patrick. Primeira página do Instagram com autoridade. Contratar gestor de tráfego profissional em paralelo.</div>
+      </div>
+      <div class="nb-card">
+        <div class="nb-when">Próximo mês</div>
+        <div class="nb-title">Fechar a sala de 80m²</div>
+        <div class="nb-desc">Parcelamento em 5x R$ 40k. Sala nova permite 15-20 particulares/semana e sala de injetáveis. Oportunidade que não volta.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mentores-section" id="mentores" data-section>
+  <div class="mentores-content wrap">
+    <div class="mentores-label">Seus mentores</div>
+    <h2><span class="gold">Dr. Matheus Jeronimo</span> · Patrick Suyti</h2>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--w70);margin-top:18px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.5;">Matheus viveu — sócio cirurgião que saiu do convênio para o particular premium. Patrick constrói — estratégia comercial, posicionamento e mentalidade. Você tem as duas visões.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo"></div>
+  <div class="footer-brand">Cirurgião Particular Premium</div>
+  <div class="footer-info">
+    <div>Mapa do Dr. Tiago Blaya · CPP</div>
+    <div>Dr. Matheus Jeronimo · Patrick Suyti · 2026</div>
+  </div>
+  <div class="footer-update" id="taskCounter">Atualizado em 23/04/2026</div>
+  <div style="font-size:11px;color:var(--w30);margin-top:12px;letter-spacing:0.5px;font-style:italic;">Próxima atualização: após sua Reunião 1</div>
+</footer>
+
+<script>
+(function(){
+  /* ===== TAREFAS COM PERSISTENCIA ===== */
+  const STORAGE_KEY = 'cpp-mapa-tiago-blaya-tasks-v1';
+  const tasks = document.querySelectorAll('.task[data-task-id]');
+  const counter = document.getElementById('taskCounter');
+  const progFill = document.getElementById('progBarFill');
+
+  function loadState(){
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+    catch(e){ return {}; }
+  }
+  function saveState(s){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch(e){}
+  }
+  function updateProgress(){
+    const total = tasks.length;
+    const done = document.querySelectorAll('.task.done').length;
+    const pct = total > 0 ? (done/total)*100 : 0;
+    if (counter) {
+      const pctR = Math.round(pct);
+      counter.innerHTML = '<strong style="color:var(--gold);">' + done + '</strong> de ' + total + ' tarefas concluídas · ' + pctR + '%';
+    }
+    if (progFill) progFill.style.width = pct + '%';
+  }
+
+  const state = loadState();
+  tasks.forEach(t => {
+    const id = t.getAttribute('data-task-id');
+    if (state[id]) t.classList.add('done');
+    t.addEventListener('click', function(e){
+      e.stopPropagation();
+      this.classList.toggle('done');
+      const ns = loadState();
+      ns[id] = this.classList.contains('done');
+      saveState(ns);
+      updateProgress();
+    });
+  });
+  updateProgress();
+
+  /* ===== COUNTER ANIMATION (KPI numbers) ===== */
+  function animateCount(el, target, suffix, prefix, duration){
+    const start = 0;
+    const startTime = performance.now();
+    function step(now){
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const cur = Math.round(start + (target - start) * eased);
+      el.textContent = (prefix||'') + cur.toLocaleString('pt-BR') + (suffix||'');
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = (prefix||'') + target.toLocaleString('pt-BR') + (suffix||'');
+    }
+    requestAnimationFrame(step);
+  }
+  const kpiAnimated = new WeakSet();
+  function tryAnimateKPI(el){
+    if (kpiAnimated.has(el)) return;
+    const t = el.getAttribute('data-count');
+    if (!t) return;
+    kpiAnimated.add(el);
+    const target = parseInt(t,10);
+    const prefix = el.getAttribute('data-prefix') || '';
+    const suffix = el.getAttribute('data-suffix') || '';
+    animateCount(el, target, suffix, prefix, 1400);
+  }
+
+  /* ===== INTERSECTION OBSERVER (reveal + counters) ===== */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        if (e.target.hasAttribute('data-count')) tryAnimateKPI(e.target);
+        e.target.querySelectorAll('[data-count]').forEach(tryAnimateKPI);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, [data-count], .kpi-card, .fase, .insight-card, .nb-card, .evento, .material-card').forEach(el => {
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+
+  /* ===== SCROLL SPY SIDENAV ===== */
+  const sections = document.querySelectorAll('[data-section], #kpis, #diagnostico');
+  const navLinks = document.querySelectorAll('.sidenav a');
+  function updateSpy(){
+    let cur = '';
+    sections.forEach(s => {
+      const r = s.getBoundingClientRect();
+      if (r.top < 200 && r.bottom > 200) cur = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('data-target') === cur);
+    });
+  }
+  window.addEventListener('scroll', updateSpy, { passive:true });
+  updateSpy();
+
+  /* ===== PWA INSTALL ===== */
+  let deferredPrompt;
+  const hint = document.getElementById('installHint');
+  const installBtn = document.getElementById('installBtn');
+  const dismissedKey = 'cpp-mapa-danilo-install-dismissed';
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (!sessionStorage.getItem(dismissedKey)) {
+      setTimeout(() => hint && hint.classList.add('show'), 12000);
+    }
+  });
+  if (installBtn) installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    sessionStorage.setItem(dismissedKey, '1');
+    hint.classList.remove('show');
+    deferredPrompt = null;
+  });
+  document.querySelector('.install-hint .close-x') && document.querySelector('.install-hint .close-x').addEventListener('click', () => {
+    sessionStorage.setItem(dismissedKey, '1');
+  });
+
+  /* ===== SERVICE WORKER (cache offline) ===== */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(()=>{});
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
